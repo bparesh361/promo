@@ -43,6 +43,9 @@
                             statusvalue="-1";
                         }                        
                         $("#isActive").val(statusvalue);
+                        var x = $("#dmsg").text();
+                        //alert(x);
+                        $('#dmsg').html('');
                     }
                 });
 
@@ -71,7 +74,7 @@
                     $("#campaignName").val("");
                     $("#campaignId").val("");
                     $("#isActive").val("-1");
-                    $("#msg").html('');
+                    $("#dmsg").html('');
                     jQuery("#list4").jqGrid('setGridParam',{url:'getAllCampaignDetail',datatype:'json',page:1}).trigger("reloadGrid");
 
                 });
@@ -144,6 +147,9 @@
                                         </tr>
                                     </table>
                                 </td>
+                            </tr>
+                            <tr>
+                            	<td align="center"><div id="dmsg" class="dmsg"><#if msg??>${msg}</#if></div></td>
                             </tr>
                         </table>
                     </td>

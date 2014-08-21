@@ -13,10 +13,12 @@ import com.fks.pwm.entity.MstEmployee;
 import com.fks.pwm.entity.MstLeadTime;
 import com.fks.pwm.entity.MstLocation;
 import com.fks.pwm.entity.MstStatus;
+import com.fks.pwm.entity.MstStore;
 import com.fks.pwm.repository.MCHRepo;
 import com.fks.pwm.repository.MstLeadTimeRepo;
 import com.fks.pwm.repository.MstLocationRepo;
 import com.fks.pwm.repository.MstStatusRepo;
+import com.fks.pwm.repository.StoreRepo;
 import com.fks.pwm.util.CommonUtil;
 import com.fks.pwm.vo.LeadTimeVO;
 import com.fks.pwm.vo.MchVO;
@@ -36,6 +38,9 @@ public class MasterService {
 	
 	@Autowired
 	private MstLocationRepo locationRepo;
+	
+	@Autowired
+	private StoreRepo storeRepo;
 	
 	public List<MstStatus> getLeadTimeFromMstStatus(){
 		List<MstStatus> listStatus = new ArrayList<MstStatus>(2);
@@ -94,4 +99,9 @@ public class MasterService {
 		}
 		return true;
 	}	
+	
+	public MstStore getSite(String storeCode){
+		return storeRepo.findOne(storeCode);
+	}
+	
 }

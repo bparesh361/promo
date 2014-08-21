@@ -1,6 +1,8 @@
 package com.fks.pwm.util;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,6 +14,7 @@ import com.fks.pwm.vo.MchVO;
 public class CommonUtil {
 
 	private static final Logger logger = Logger.getLogger(CommonUtil.class);
+	private static final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
 	public static MchVO getMCHFromCSVLine(String[] line, MstEmployee emp) {
 		if (line == null || line.length != 5) {
@@ -49,6 +52,13 @@ public class CommonUtil {
 			listStr.add(str);
 		}
 		return listStr;
+	}
+	
+	public static String getDateStr(Date date){
+		if(date==null){
+			throw new IllegalArgumentException("Calendar Date Can not be NULL");
+		}
+		return format.format(date);
 	}
 
 }

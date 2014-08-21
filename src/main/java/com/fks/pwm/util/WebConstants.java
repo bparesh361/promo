@@ -64,5 +64,7 @@ public class WebConstants {
 	    public static final byte[] NEW_LINE = "\n".getBytes();
 	    public static final byte[] MCH_HEADER_LINE = "Category,Sub Category,MC Code,MC Decription,Location".getBytes();
 	    public static final String CSV_EXT = ".csv";
+	    public static final String HO_STORE_CODE = "901";
+	    
 	    
 }

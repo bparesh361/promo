@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fks.pwm.entity.MstCalender;
 import com.fks.pwm.entity.MstCampaign;
 import com.fks.pwm.service.OtherMasterService;
 import com.fks.pwm.util.OtherMasterJSONUtil;
@@ -45,4 +47,42 @@ public class OtherMasterController {
 		return "master/other/campaign";
 	}
 	
+	@RequestMapping("showCalendarPage")
+	public String showCalendarPage(){
+		return "master/other/calendar";
+	}
+	
+	@RequestMapping("showCalendarData")
+	public void showCalendarData(HttpServletResponse response) throws Exception {
+		List<MstCalender> list = service.getAllCalendar();
+		JSONObject obj = OtherMasterJSONUtil.getJsonForCalendar(list);
+		response.getWriter().print(obj);
+		response.getWriter().flush();
+	}
+	
+	@RequestMapping("getAllCalendarByYearAndMonth")
+	public void getAllCalendarByYearAndMonth(@RequestParam(required=false) String year, @RequestParam(required=false) String month, HttpServletResponse response) throws Exception{
+		List<MstCalender> list=null;
+		if(month!=null){
+			list = service.getAllCalendarsByMonthAndYear(month, year);			
+		} else {
+			list = service.getAllCalendarsByYear(year);
+		}
+		JSONObject obj = OtherMasterJSONUtil.getJsonForCalendar(list);
+		response.getWriter().print(obj);
+	}
+	
+	@RequestMapping("updateCampaign")
+	public String updateCalendar(@ModelAttribute MstCalender calender, HttpServletRequest request){
+		boolean result = service.udpateCalendar(calender);
+		if(result) {
+			request.setAttribute("msg", "Calendar created / updated successfully with Id " + calender.getMstCalenderId());
+		} else {
+			request.setAttribute("msg", "Error !!!");
+		}
+		return "master/other/calendar";
+	}
+	
+	
+		
 }

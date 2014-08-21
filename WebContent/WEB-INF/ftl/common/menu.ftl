@@ -13,7 +13,7 @@
                    		 						<ul>  
                    		 							<#list modules?keys as k1>                   		 								
                    		 									<#if k1 == "1011">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="showUserPage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1012">
                    		 										<li><a href="#">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1013">
@@ -70,7 +70,7 @@
                    		 									<#elseif k1 == "1067">
                    		 										<li><a href="#">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1068">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="showCalendarPage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1069">
                    		 										<li><a href="#">${modules[k1]}</a></li>                   		 									                   		 						                		 		
                    		 									</#if>                   		 								               		 	

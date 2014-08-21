@@ -1,6 +1,8 @@
 package com.fks.pwm.util;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -8,6 +10,7 @@ import net.sf.json.JSONObject;
 import com.fks.pwm.entity.Mch;
 import com.fks.pwm.entity.MstLeadTime;
 import com.fks.pwm.entity.MstStatus;
+import com.fks.pwm.entity.MstStore;
 
 public class MasterJSONUtil {
 
@@ -68,6 +71,16 @@ public class MasterJSONUtil {
 
 		}
 		return responsedata;
+	}
+	
+	public static JSONObject getJsonForSiteSelectionUserPage(MstStore store){
+		JSONObject responsedata = new JSONObject();
+		JSONArray array = new JSONArray();
+		Map<String,String> map = new HashMap<String,String>();
+		map.put(store.getMstStoreId(), store.getMstStoreId()+ " : "+store.getSiteDescription());		
+		responsedata.putAll(map);
+		return responsedata;
+
 	}
 
 }

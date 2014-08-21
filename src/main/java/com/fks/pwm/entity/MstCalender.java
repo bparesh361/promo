@@ -17,7 +17,7 @@ public class MstCalender implements Serializable {
 
 	@Id
 	@Column(name="mst_calender_id")
-	private String mstCalenderId;
+	private Long mstCalenderId;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="cal_date")
@@ -29,11 +29,11 @@ public class MstCalender implements Serializable {
 	public MstCalender() {
 	}
 
-	public String getMstCalenderId() {
+	public Long getMstCalenderId() {
 		return this.mstCalenderId;
 	}
 
-	public void setMstCalenderId(String mstCalenderId) {
+	public void setMstCalenderId(Long mstCalenderId) {
 		this.mstCalenderId = mstCalenderId;
 	}
 

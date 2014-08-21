@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fks.pwm.entity.MstCalender;
 import com.fks.pwm.entity.MstCampaign;
+import com.fks.pwm.repository.CalendarRepo;
 import com.fks.pwm.repository.CampaignRepo;
 
 @Service
@@ -18,8 +20,15 @@ public class OtherMasterService {
 	@Autowired
 	private CampaignRepo campaignRepo;
 	
+	@Autowired
+	private CalendarRepo calendarRepo;
+	
 	public List<MstCampaign> getAllCampaign(){
 		return campaignRepo.findAll();
+	}
+	
+	public List<MstCalender> getAllCalendar(){
+		return calendarRepo.findAll();
 	}
 	
 	@Transactional(readOnly=false)
@@ -35,6 +44,29 @@ public class OtherMasterService {
 			dbCampaign.setIsActive(campaign.getIsActive());
 		}
 		return true;
+	}
+	
+	@Transactional(readOnly=false)
+	public boolean udpateCalendar(MstCalender calender){
+		if(calender==null){
+			return false;
+		}
+		if(calender.getMstCalenderId()==null){
+			calendarRepo.save(calender);			
+		} else {
+			MstCalender dbCalendar = calendarRepo.findOne(calender.getMstCalenderId());
+			dbCalendar.setCalDate(calender.getCalDate());
+			dbCalendar.setDateDescription(calender.getDateDescription());
+		}
+		return true;
+	}
+	
+	public List<MstCalender> getAllCalendarsByMonthAndYear(String month,String year){
+		return calendarRepo.getCalendarsByMonthAndYear(month, year);
+	}
+	
+	public List<MstCalender> getAllCalendarsByYear(String year){
+		return calendarRepo.getCalendarsByYear(year);
 	}
 	
 }
