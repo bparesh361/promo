@@ -1,5 +1,6 @@
 package com.fks.pwm.util;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,9 +8,14 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import sun.awt.windows.WEmbeddedFrame;
+
 import com.fks.pwm.entity.Mch;
 import com.fks.pwm.entity.MstEmployee;
+import com.fks.pwm.entity.MstRole;
+import com.fks.pwm.entity.MstStore;
 import com.fks.pwm.vo.MchVO;
+import com.fks.pwm.vo.UserVO;
 
 public class CommonUtil {
 
@@ -59,6 +65,24 @@ public class CommonUtil {
 			throw new IllegalArgumentException("Calendar Date Can not be NULL");
 		}
 		return format.format(date);
+	}
+	
+	public static MstEmployee getEmployeeFromVO(UserVO vo, MstRole role, MstStore store){
+		MstEmployee emp = new MstEmployee();
+		emp.setEmpId(vo.getEmpCode());
+		emp.setUserId(vo.getEmpCode());
+		emp.setContactNo(new BigInteger(vo.getEmpContact()));
+		emp.setEmpCode(new BigInteger(vo.getEmpCode()));
+		emp.setEmployeeName(vo.getEmpName());
+		emp.setEmailId(vo.getEmpEmail());
+		emp.setReportingPersonName(vo.getEmpMgr());
+		emp.setIsBlocked(WebConstants.FALSE_BYTE);
+		emp.setMstRole(role);
+		emp.setIsPasswordChange(WebConstants.FALSE_BYTE);
+		emp.setEmpPassword(WebConstants.DEFAULT_PASSWORD);
+		emp.setMstStore(store);
+		emp.setStoreDesc(store.getSiteDescription());
+		return emp;
 	}
 
 }

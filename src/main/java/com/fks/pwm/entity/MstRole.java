@@ -18,7 +18,7 @@ public class MstRole implements Serializable {
 
 	@Id
 	@Column(name="mst_role_id")
-	private String mstRoleId;
+	private Long mstRoleId;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="created_date")
@@ -67,11 +67,11 @@ public class MstRole implements Serializable {
 	public MstRole() {
 	}
 
-	public String getMstRoleId() {
+	public Long getMstRoleId() {
 		return this.mstRoleId;
 	}
 
-	public void setMstRoleId(String mstRoleId) {
+	public void setMstRoleId(Long mstRoleId) {
 		this.mstRoleId = mstRoleId;
 	}
 

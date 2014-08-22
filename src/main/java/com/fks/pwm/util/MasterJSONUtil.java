@@ -8,7 +8,9 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.fks.pwm.entity.Mch;
+import com.fks.pwm.entity.MstEmployee;
 import com.fks.pwm.entity.MstLeadTime;
+import com.fks.pwm.entity.MstRole;
 import com.fks.pwm.entity.MstStatus;
 import com.fks.pwm.entity.MstStore;
 
@@ -71,16 +73,51 @@ public class MasterJSONUtil {
 
 		}
 		return responsedata;
-	}
+	}	
 	
-	public static JSONObject getJsonForSiteSelectionUserPage(MstStore store){
-		JSONObject responsedata = new JSONObject();
-		JSONArray array = new JSONArray();
+	public static JSONObject getJsonForSiteSelectionUserPage(List<MstStore> stores){
+		JSONObject responsedata = new JSONObject();		
 		Map<String,String> map = new HashMap<String,String>();
-		map.put(store.getMstStoreId(), store.getMstStoreId()+ " : "+store.getSiteDescription());		
+		for(MstStore store : stores){
+			map.put(store.getMstStoreId(), store.getMstStoreId()+ " : "+store.getSiteDescription());
+		}		
 		responsedata.putAll(map);
 		return responsedata;
-
+	}
+	
+	public static JSONObject getJsonForRoles(List<MstRole> roles){
+		JSONObject responsedata = new JSONObject();		
+		Map<Long,String> map = new HashMap<Long,String>();
+		for(MstRole role: roles){
+			map.put(role.getMstRoleId(), role.getRoleName());
+		}		
+		responsedata.putAll(map);
+		return responsedata;
 	}
 
+	public static JSONObject getJsonForSiteDescription(MstStore store){
+		JSONObject responsedata = new JSONObject();		
+		responsedata.put("desc", store.getSiteDescription());
+		responsedata.put("format", store.getFormatName());
+		responsedata.put("region", store.getRegionName());
+		responsedata.put("location", store.getMstLocation().getLocationName());
+		responsedata.put("city", store.getCity());
+		responsedata.put("zone", store.getMstZone().getZoneName());		
+		return responsedata;
+	}
+	
+	public static JSONObject getJsonForEmployeeFlexBox(List<MstEmployee> employees){
+		JSONObject responsedata = new JSONObject();		
+		JSONArray array = new JSONArray();
+		for(MstEmployee emp: employees){
+			JSONObject cell = new JSONObject();
+			cell.put("id",emp.getEmpId());
+			cell.put("name",emp.getEmployeeName());
+			array.add(cell);			
+		}		
+		responsedata.put("results",array);
+		return responsedata;
+	}
+
+	
 }

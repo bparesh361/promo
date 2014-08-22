@@ -12,12 +12,15 @@ import com.fks.pwm.entity.Mch;
 import com.fks.pwm.entity.MstEmployee;
 import com.fks.pwm.entity.MstLeadTime;
 import com.fks.pwm.entity.MstLocation;
+import com.fks.pwm.entity.MstRole;
 import com.fks.pwm.entity.MstStatus;
 import com.fks.pwm.entity.MstStore;
 import com.fks.pwm.repository.MCHRepo;
+import com.fks.pwm.repository.MstEmployeeRepository;
 import com.fks.pwm.repository.MstLeadTimeRepo;
 import com.fks.pwm.repository.MstLocationRepo;
 import com.fks.pwm.repository.MstStatusRepo;
+import com.fks.pwm.repository.RoleRepo;
 import com.fks.pwm.repository.StoreRepo;
 import com.fks.pwm.util.CommonUtil;
 import com.fks.pwm.vo.LeadTimeVO;
@@ -41,6 +44,12 @@ public class MasterService {
 	
 	@Autowired
 	private StoreRepo storeRepo;
+	
+	@Autowired
+	private RoleRepo roleRepo;
+	
+	@Autowired
+	private MstEmployeeRepository empRepo;
 	
 	public List<MstStatus> getLeadTimeFromMstStatus(){
 		List<MstStatus> listStatus = new ArrayList<MstStatus>(2);
@@ -100,8 +109,30 @@ public class MasterService {
 		return true;
 	}	
 	
-	public MstStore getSite(String storeCode){
+	public List<MstStore> getSites(Long locationId){
+		return storeRepo.getAllStoresByLocationId(locationId);
+	}
+	
+	public MstStore getStore(String storeCode) {
 		return storeRepo.findOne(storeCode);
 	}
+	
+	public List<MstRole> findAllRoles() {
+		return roleRepo.findAll(); 
+	}
+	
+	@Transactional(readOnly=false)
+	public void createEmployee(MstEmployee emp){
+		empRepo.save(emp);
+	}
+	
+	public MstRole getRole(Long roleId){
+		return roleRepo.findOne(roleId);
+	}
+	
+	public List<MstEmployee> searchEmployeeByName(String empName){
+		return empRepo.findAllEmployeesByName("%"+empName+"%");
+	}
+	
 	
 }

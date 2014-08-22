@@ -82,15 +82,15 @@
                     //scrollHeight:100,
                     source : function(request, response) {
                         var temp=    $.ajax({
-                            url : "getEmployeeForFlexBox?txtuserempName="+$("#txtuserempName").val() ,
+                            url : "getEmployeeForFlexBox.do?txtuserempName="+$("#txtuserempName").val() ,
                             dataType : "json",
                             type:"POST",
                             data : {name_startsWith : request.term},
-                            success : function(data) {                                   // alert(data);
+                            success : function(data) {      
+                             alert(data.results);                            
                                 response($.map(data.results,function(item) {
                                     return {id : item.id,label : item.name};
-
-                                }));
+                               }));
                             }
                         });
                     }, select: function( event, ui ) {
@@ -188,13 +188,23 @@
                 // HO BUTTON CLICKED...
                 $("#ho1").click(function (){                	
                 	$("#hoSelectSection").show();
+                	$("#storeSelectSection").hide();
+                	$("#zoneSelectSection").hide();
                 });
-                
+                // STORE BUTTON CLICKED...
                 $("#store1").click(function (){                	
                 	$("#storeSelectSection").show();
+                	$("#hoSelectSection").hide();
+                	$("#zoneSelectSection").hide();
                 });
-               
-               $.getJSON("showHoStore.do", function(data){
+                // ZONE BUTTON CLICKED ...
+                $("#zone1").click(function (){                	
+                	$("#zoneSelectSection").show();
+                	$("#hoSelectSection").hide();
+                	$("#storeSelectSection").hide();
+                });                
+                
+               $.getJSON("showStores.do?storeType=1", function(data){
                		$("#hoSelectSection").hide();
   					$.each(data, function(index, text) {  						
     					$('#hoSelect').append(
@@ -203,26 +213,58 @@
   					});
 			  }); 
 			  
-			  $.getJSON("showStores.do", function(data){
+			  $.getJSON("showStores.do?storeType=2", function(data){
                		$("#storeSelectSection").hide();
   					$.each(data, function(index, text) {  						
-    					$('#hoSelect').append(
+    					$('#storeSelect').append(
         					$('<option></option>').val(index).html(text)
     					);
   					});
 			  }); 
 			  
-			  $.getJSON("showAllStores.do", function(data){
-               		$("#hoSelectSection").hide();
+			  $.getJSON("showStores.do?storeType=3", function(data){
+               		$("#zoneSelectSection").hide();               			            		
   					$.each(data, function(index, text) {  						
-    					$('#hoSelect').append(
+    					$('#zoneSelect').append(
         					$('<option></option>').val(index).html(text)
     					);
   					});
 			  }); 
+			  
+			  $.getJSON("showRoles.do", function(data){               		   			            		
+  					$.each(data, function(index, text) {  						
+    					$('#roleSelect').append(
+        					$('<option></option>').val(index).html(text)
+    					);
+  					});
+			  }); 
+			  
+			  
+			  
+			  $("#zoneSelect").change(function(){
+                	var storeCode = $("#zoneSelect").val();                	
+                	var url = 'storeDesc.do?storeCode='+storeCode;                	
+                	$.getJSON(url, function(data){               			
+               			$.each(data, function(index, text) {
+               				if(index == "desc")               					
+               					$('#txtsitedesc').val(text);
+               				else if(index == "format")
+               					$('#txtformat').val(text);
+               				else if(index == "city")
+               					$('#txtcity').val(text);
+               				else if(index == "zone")
+               					$('#txtzone').val(text);
+               				else if(index == "region")
+               					$('#txtregion').val(text);
+               				else if(index == "location")
+               					$('#txtlocation').val(text);	
+               			});
+			  		});	       	
+                });
                
-
-                function getzonedesc(store){
+			
+        	  
+             function getzonedesc(store){
                     $.ajax({
                         url: "getZoneDescBasedonZone?store="+store,
                         cache:false,
@@ -436,7 +478,7 @@
 
                     //RADIO BUTTON VALIDATION
                     var radios = document.getElementsByName("show_Site");
-                    var formValid = false;
+                    var formValid = true;
                     var i = 0;
                     while (!formValid && i < radios.length) {
                         if (radios[i].checked) formValid = true;
@@ -513,6 +555,8 @@
 
 
         <script type="text/javascript">
+        
+        	
             //VALIDATE EMP CODE0
             function ValidateEmpcode() {
                 var userid = $("#txtempCode").val();
@@ -613,7 +657,7 @@
 	
 	 <!-- Middle content start here -->
         <div id="middle_cont">
-            <s:form id="createuser" action="donothing" method="POST">
+            <form id="createuser" action="createuser.do" method="POST">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="f14">
                     <tr>
                         <td width="100%" align="center" >
@@ -647,12 +691,12 @@
                                 <tr>
                                     <td width="12%" align="right">Employee Code</td><td class="errorText">*&nbsp;&nbsp;&nbsp;</td>
                                     <td width="38%">
-                                        <s:textfield type="text" name="formVo.txtempCode" id="txtempCode"  onChange="ValidateEmpcode();" value="%{formVo.txtempCode}" />
+                                        <input type="text" name="empCode" id="txtempCode"  onChange="ValidateEmpcode();" value="%{formVo.txtempCode}" />
                                         <!--                                        <input type="text" name="txtempCode" id="txtempCode"  onChange="ValidateEmpcode();" />-->
                                     </td>
                                     <td width="12%" align="right">Reporting To </td>
                                     <td width="38%">
-                                        <s:textfield type="text" name="formVo.txtreporting" id="txtreporting" value="%{formVo.txtreporting}" />
+                                        <input type="text" name="empMgr" id="txtreporting" value="%{formVo.txtreporting}" />
                                         <!--                                        <input type="text" name="txtreporting" id="txtreporting" />-->
                                     </td>
                                 </tr>
@@ -660,18 +704,18 @@
                                     <td align="right">Employee Name </td><td class="errorText">*&nbsp;&nbsp;&nbsp;</td>
                                     <td>
                                         <!--                                        <input type="text" name="txtempname" id="txtempname" />-->
-                                        <s:textfield value="%{formVo.txtempname}"  type="text" name="formVo.txtempname" id="txtempname" />
+                                        <input type="text" name="empName" id="txtempname" />
                                     </td>
                                     <td align="right" style="display: none">Task Manager</td>
                                     <td>
-                                        <s:textfield value="%{formVo.txttastmanager}"  type="text" name="formVo.txttastmanager" id="txttastmanager" style="display: none" />
+                                        <input value="%{formVo.txttastmanager}"  type="text" name="formVo.txttastmanager" id="txttastmanager" style="display: none" />
                                         <!--                                    <input type="text" name="txttastmanager" id="txttastmanager"  /></td>-->
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="right">Contact Number</td><td class="errorText">*&nbsp;&nbsp;&nbsp;</td>
                                     <td>
-                                        <s:textfield type="text" name="formVo.txtcontact" id="txtcontact" size="10" maxlength="10" value="%{formVo.txtemail}"/>
+                                        <input type="text" name="empContact" id="txtcontact" size="10" maxlength="10" value="%{formVo.txtemail}"/>
                                         <!--<input type="text" name="txtcontact" id="txtcontact" size="10" maxlength="10"/>-->
 
                                     </td>
@@ -681,7 +725,7 @@
                                 <tr>
                                     <td align="right">Email Address </td><td class="errorText">*&nbsp;&nbsp;&nbsp;</td>
                                     <td>
-                                        <s:textfield type="text" name="formVo.txtemail" id="txtemail" value="%{formVo.txtemail}" />
+                                        <input type="text" name="empEmail" id="txtemail" value="%{formVo.txtemail}" />
                                         <!--                                        <input type="text" name="txtemail" id="txtemail"  />-->
                                     </td>
                                     <td>&nbsp;</td>
@@ -697,19 +741,22 @@
                         <td>
                             <table width="84%" border="0" align="center" cellpadding="2" cellspacing="4">
                                 <tr>
-                                    <td align="left"> <input type="radio" id="ho1" name="show_Site" value="ho" />Ho</td>
-                                    <td align="left"> <input type="radio" id="store1" name="show_Site" value="store"/>Store</td>
-                                    <td align="left"> <input type="radio" id="zone1" name="show_Site" value="zone"/>Zone</td>
+                                    <td align="left"> <input type="radio" id="ho1" name="siteType" value="ho" />Ho</td>
+                                    <td align="left"> <input type="radio" id="store1" name="siteType" value="store"/>Store</td>
+                                    <td align="left"> <input type="radio" id="zone1" name="siteType" value="zone"/>Zone</td>
                                     <td></td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
 					<tr cssClass="dropdown">                    	
-                    	<td align="center"><div id="hoSelectSection">HO Site Code <select id="hoSelect"></select></div></td>                    	
+                    	<td align="center"><div id="hoSelectSection">HO Site Code <select id="hoSelect" name="hoSelect"><option value="-1"> --- Select --- </option></select></div></td>                    	
                     </tr>
                     <tr cssClass="dropdown">                    	
-                    	<td align="center"><div id="storeSelectSection">Site Code <select id="storeSelect"></select></div></td>                    	
+                    	<td align="center"><div id="storeSelectSection">Site Code <select id="storeSelect" name="storeSelect"><option value="-1"> --- Select --- </option></select></div></td>                    	
+                    </tr>
+                    <tr cssClass="dropdown">                    	
+                    	<td align="center"><div id="zoneSelectSection">Zone Site Code <select id="zoneSelect" name="zoneSelect"><option value="-1"> --- Select --- </option></select></div></td>                    	
                     </tr>
                     <tr>
                         <td>
@@ -780,9 +827,9 @@
                         <td>
                             <table width="94%" border="0" align="center" cellpadding="2" cellspacing="4">
                                 <tr>
-                                    <td width="13%" align="right">User Role<span class="errorText">&nbsp;*</span></td>
-
-                                    <td width="37%"><s:select name="formVo.roleSel" id="roleSel"  list="roleMap" headerKey="-1" headerValue="---Select Role---" value="---Select Role---"  cssClass="dropdown" value="%{formVo.roleSel}"/></td>
+                                    <td width="13%" align="right">User Role </td>
+                                    <td><select id="roleSelect" name="role"></select></td>
+                                    <span class="errorText">&nbsp;*</span></td>
 
                                     <td width="9s%" align="right">&nbsp;</td>
                                     <td width="38%">&nbsp;</td>
@@ -806,9 +853,7 @@
                                         <table align="center" width="40%">
                                             <tr>
                                                 <td align="right">
-                                                    <s:submit action="submituserDtl" id="btnSubmit" name="btnSubmit" value="Create" cssClass="btn" />
-
-                                                    <!--                                        <input type="submit" name="btnSubmit" id="btnSubmit" value="Submit"class="btn" align="center" />-->
+                                                    <input type="submit" action="submituserDtl" id="btnSubmit" name="btnSubmit" value="Create" cssClass="btn" />                                                    
                                                 </td>
 
                                                 <td align="left">  <s:submit action="updateUserDtl" id="btnUpdate"  name="btnUpdate" value="Update" cssClass="btn" /></td>
