@@ -63,6 +63,7 @@ public class WebConstants {
 	    public static final String PROMO_LEAD_TIME_VALUE = "leadTimeValue";
 	    public static final byte[] NEW_LINE = "\n".getBytes();
 	    public static final byte[] MCH_HEADER_LINE = "Category,Sub Category,MC Code,MC Decription,Location".getBytes();
+	    public static final byte[] MC_USER_HEADER_LINE = "MC Code".getBytes();
 	    public static final String CSV_EXT = ".csv";
 	    public static final Long HO = 1L;
 	    public static final Long ZONE = 2L;

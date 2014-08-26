@@ -17,7 +17,7 @@ public class MstProfile implements Serializable {
 
 	@Id
 	@Column(name="profile_id")
-	private String profileId;
+	private Long profileId;
 
 	@Column(name="level_access")
 	private String levelAccess;
@@ -26,7 +26,7 @@ public class MstProfile implements Serializable {
 	private String profileName;
 
 	//bi-directional many-to-one association to MapModuleProfile
-	@OneToMany(mappedBy="mstProfile")
+	@OneToMany(mappedBy="mstProfile", cascade=CascadeType.PERSIST)
 	private List<MapModuleProfile> mapModuleProfiles;
 
 	//bi-directional many-to-one association to MapRoleProfile
@@ -36,11 +36,11 @@ public class MstProfile implements Serializable {
 	public MstProfile() {
 	}
 
-	public String getProfileId() {
+	public Long getProfileId() {
 		return this.profileId;
 	}
 
-	public void setProfileId(String profileId) {
+	public void setProfileId(Long profileId) {
 		this.profileId = profileId;
 	}
 

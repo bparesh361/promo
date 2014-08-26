@@ -17,7 +17,7 @@ public class MstZone implements Serializable {
 
 	@Id
 	@Column(name="zone_id")
-	private String zoneId;
+	private Long zoneId;
 
 	@Column(name="is_blocked")
 	private byte isBlocked;
@@ -47,11 +47,11 @@ public class MstZone implements Serializable {
 	public MstZone() {
 	}
 
-	public String getZoneId() {
+	public Long getZoneId() {
 		return this.zoneId;
 	}
 
-	public void setZoneId(String zoneId) {
+	public void setZoneId(Long zoneId) {
 		this.zoneId = zoneId;
 	}
 

@@ -133,10 +133,9 @@ public class MasterController {
          writer.close();
          BufferedReader bis = new BufferedReader(new FileReader(new File(dir,fileName)));
          String line = bis.readLine();
-         response.getOutputStream().write(WebConstants.MCH_HEADER_LINE);
+//         response.getOutputStream().write(WebConstants.MCH_HEADER_LINE);
          response.getOutputStream().write(WebConstants.NEW_LINE);
-         while(line!=null){        
-        	 System.out.println(line);
+         while(line!=null){
         	 response.getOutputStream().write(line.getBytes());
         	 response.getOutputStream().write(WebConstants.NEW_LINE);
         	 line = bis.readLine();

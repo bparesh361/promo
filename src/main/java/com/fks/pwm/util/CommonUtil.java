@@ -8,8 +8,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import sun.awt.windows.WEmbeddedFrame;
-
+import com.fks.pwm.entity.Map_user_MCH_F1;
 import com.fks.pwm.entity.Mch;
 import com.fks.pwm.entity.MstEmployee;
 import com.fks.pwm.entity.MstRole;
@@ -67,9 +66,11 @@ public class CommonUtil {
 		return format.format(date);
 	}
 	
-	public static MstEmployee getEmployeeFromVO(UserVO vo, MstRole role, MstStore store){
-		MstEmployee emp = new MstEmployee();
-		emp.setEmpId(vo.getEmpCode());
+	public static MstEmployee getEmployeeFromVO(UserVO vo, MstRole role, MstStore store, MstEmployee emp){
+		if(emp==null){
+			emp = new MstEmployee();
+		}
+		emp.setEmpId(Long.parseLong(vo.getEmpCode()));
 		emp.setUserId(vo.getEmpCode());
 		emp.setContactNo(new BigInteger(vo.getEmpContact()));
 		emp.setEmpCode(new BigInteger(vo.getEmpCode()));
@@ -84,5 +85,37 @@ public class CommonUtil {
 		emp.setStoreDesc(store.getSiteDescription());
 		return emp;
 	}
+	
+	public static List<String[]> writeEmployeeData(List<MstEmployee> list) throws Exception {
+		List<String[]> emplist = new ArrayList<String[]>();		
+		for(MstEmployee emp : list) {
+			String[] empStrArray = new String[12]; 
+			empStrArray[0] = emp.getEmpId().toString();
+			empStrArray[1] = emp.getEmployeeName();
+			empStrArray[2] = emp.getMstStore().getFormatName();
+			empStrArray[3] = emp.getContactNo().toString();
+			empStrArray[4] = emp.getEmailId();
+			empStrArray[5] = emp.getMstStore().getSiteDescription();
+			empStrArray[6] = emp.getMstStore().getCity();
+			empStrArray[7] = emp.getMstStore().getRegionName();
+			empStrArray[8] = emp.getMstStore().getMstZone().getZoneName();
+			empStrArray[9] = emp.getMstStore().getMstLocation().getLocationName();
+			empStrArray[10] = emp.getMstStore().getMstLocation().getLocationName();
+			empStrArray[11] = emp.getMstRole().getRoleName();		
+			emplist.add(empStrArray);
+		}
+		return emplist;
+	}
 
+	public static List<String> getMCCodeList(List<String[]> list){
+		list.remove(0);
+		List<String> mcCodeList = new ArrayList<String>();
+		for(String[] str : list){
+			mcCodeList.add(str[0]);
+		}
+		return mcCodeList;
+	}
+	
+	
+	
 }

@@ -45,7 +45,7 @@ public class LoginService {
 			List<MapModuleProfile> mplist = mapRoleProfile.getMstProfile()
 					.getMapModuleProfiles();
 			for (MapModuleProfile mapModuleProfile : mplist) {
-				map.put(mapModuleProfile.getMstModule().getModuleId(), mapModuleProfile.getMstModule().getModuleName());
+				map.put(mapModuleProfile.getMstModule().getModuleId().toString(), mapModuleProfile.getMstModule().getModuleName());
 			}
 		}
 		return map;

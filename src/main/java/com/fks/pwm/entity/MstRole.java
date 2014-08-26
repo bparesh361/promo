@@ -1,7 +1,10 @@
 package com.fks.pwm.entity;
 
 import java.io.Serializable;
+
+import javax.annotation.Generated;
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +20,7 @@ public class MstRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="mst_role_id")
 	private Long mstRoleId;
 
@@ -35,7 +39,7 @@ public class MstRole implements Serializable {
 	private Date updatedDate;
 
 	//bi-directional many-to-one association to MapRoleLocation
-	@OneToMany(mappedBy="mstRole")
+	@OneToMany(mappedBy="mstRole",cascade=CascadeType.PERSIST)
 	private List<MapRoleLocation> mapRoleLocations;
 
 	//bi-directional many-to-one association to MapRoleMch
@@ -43,7 +47,7 @@ public class MstRole implements Serializable {
 	private List<MapRoleMch> mapRoleMches;
 
 	//bi-directional many-to-one association to MapRoleProfile
-	@OneToMany(mappedBy="mstRole")
+	@OneToMany(mappedBy="mstRole",cascade=CascadeType.PERSIST)
 	private List<MapRoleProfile> mapRoleProfiles;
 
 	//bi-directional many-to-one association to MapRoleZone

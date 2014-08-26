@@ -16,7 +16,8 @@ public class MapRoleLocation implements Serializable {
 
 	@Id
 	@Column(name="map_id")
-	private String mapId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long mapId;
 
 	//bi-directional many-to-one association to MstLocation
 	@ManyToOne
@@ -31,11 +32,11 @@ public class MapRoleLocation implements Serializable {
 	public MapRoleLocation() {
 	}
 
-	public String getMapId() {
+	public Long getMapId() {
 		return this.mapId;
 	}
 
-	public void setMapId(String mapId) {
+	public void setMapId(Long mapId) {
 		this.mapId = mapId;
 	}
 

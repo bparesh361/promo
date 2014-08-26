@@ -17,7 +17,7 @@ public class MstModule implements Serializable {
 
 	@Id
 	@Column(name="module_id")
-	private String moduleId;
+	private Long moduleId;
 
 	@Column(name="is_displayed")
 	private byte isDisplayed;
@@ -35,11 +35,11 @@ public class MstModule implements Serializable {
 	public MstModule() {
 	}
 
-	public String getModuleId() {
+	public Long getModuleId() {
 		return this.moduleId;
 	}
 
-	public void setModuleId(String moduleId) {
+	public void setModuleId(Long moduleId) {
 		this.moduleId = moduleId;
 	}
 

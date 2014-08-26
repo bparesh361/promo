@@ -16,7 +16,8 @@ public class MapModuleProfile implements Serializable {
 
 	@Id
 	@Column(name="map_profile_module_id")
-	private String mapProfileModuleId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long mapProfileModuleId;
 
 	//bi-directional many-to-one association to MstModule
 	@ManyToOne
@@ -31,11 +32,11 @@ public class MapModuleProfile implements Serializable {
 	public MapModuleProfile() {
 	}
 
-	public String getMapProfileModuleId() {
+	public Long getMapProfileModuleId() {
 		return this.mapProfileModuleId;
 	}
 
-	public void setMapProfileModuleId(String mapProfileModuleId) {
+	public void setMapProfileModuleId(Long mapProfileModuleId) {
 		this.mapProfileModuleId = mapProfileModuleId;
 	}
 

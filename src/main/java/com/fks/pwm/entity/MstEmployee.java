@@ -18,7 +18,7 @@ public class MstEmployee implements Serializable {
 
 	@Id
 	@Column(name="emp_id")
-	private String empId;
+	private Long empId;
 
 	@Column(name="contact_no")
 	private BigInteger contactNo;
@@ -55,15 +55,15 @@ public class MstEmployee implements Serializable {
 	private String userId;
 
 	//bi-directional many-to-one association to Map_user_MCH_F1
-	@OneToMany(mappedBy="mstEmployee")
+	@OneToMany(mappedBy="mstEmployee",cascade=CascadeType.ALL)
 	private List<Map_user_MCH_F1> mapUserMchF1s;
 
 	//bi-directional many-to-one association to Map_user_MCH_F2
-	@OneToMany(mappedBy="mstEmployee")
+	@OneToMany(mappedBy="mstEmployee",cascade=CascadeType.ALL)
 	private List<Map_user_MCH_F2> mapUserMchF2s;
 
 	//bi-directional many-to-one association to Map_user_MCH_F3
-	@OneToMany(mappedBy="mstEmployee")
+	@OneToMany(mappedBy="mstEmployee",cascade=CascadeType.ALL)
 	private List<Map_user_MCH_F3> mapUserMchF3s;
 
 	//bi-directional many-to-one association to Map_user_MCH_F5
@@ -171,11 +171,11 @@ public class MstEmployee implements Serializable {
 	public MstEmployee() {
 	}
 
-	public String getEmpId() {
+	public Long getEmpId() {
 		return this.empId;
 	}
 
-	public void setEmpId(String empId) {
+	public void setEmpId(Long empId) {
 		this.empId = empId;
 	}
 

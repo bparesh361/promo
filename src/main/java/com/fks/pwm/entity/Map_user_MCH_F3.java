@@ -1,6 +1,7 @@
 package com.fks.pwm.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -9,11 +10,13 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Map_user_MCH_F3.findAll", query="SELECT m FROM Map_user_MCH_F3 m")
+@Table(name="map_user_MCH_F3")
+//@NamedQuery(name="Map_user_MCH_F3.findAll", query="SELECT m FROM Map_user_MCH_F3 m")
 public class Map_user_MCH_F3 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String map_user_MCH_F3_id;
 
 	//bi-directional many-to-one association to MstEmployee

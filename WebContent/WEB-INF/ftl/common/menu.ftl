@@ -1,4 +1,3 @@
-
 	<#include "topHeader.ftl">	
 		<div id="menulink" class="main_nav">
 			<#list modules?keys as key>
@@ -15,9 +14,9 @@
                    		 									<#if k1 == "1011">
                    		 										<li><a href="showUserPage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1012">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="searchUserPage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1013">
-                   		 										<li><a href="#">${modules[k1]}</a></li>                   		 									                   		 						                		 		
+                   		 										<li><a href="userMch.do">${modules[k1]}</a></li>                   		 									                   		 						                		 		
                    		 									</#if>                   		 								               		 	
                    		 							</#list>
                    		 						</ul>
@@ -36,11 +35,11 @@
                    		 									<#if k1 == "1040">
                    		 										<li><a href="#">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1041">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="rolePage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1042">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="profilePage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1043">
-                   		 										<li><a href="#">${modules[k1]}</a></li>                   		 									                   		 									                   		 						                		 		
+                   		 										<li><a href="modulePage.do">${modules[k1]}</a></li>                   		 									                   		 									                   		 						                		 		
                    		 									</#if>                   		 								               		 	
                    		 							</#list>
                    		 						</ul>

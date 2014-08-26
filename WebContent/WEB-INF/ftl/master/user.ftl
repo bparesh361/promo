@@ -36,8 +36,7 @@
                     $("#txtcontact").val('');
                     $("#txtemail").val('');
                     $("#txtreporting").val('');
-
-
+                    
                     document.getElementById('tbho').style.display = 'none';
                     document.getElementById('hoSel').style.display = 'none';
                     $("#hoSel").val("-1");
@@ -87,7 +86,7 @@
                             type:"POST",
                             data : {name_startsWith : request.term},
                             success : function(data) {      
-                             alert(data.results);                            
+                             //alert(data.results);                            
                                 response($.map(data.results,function(item) {
                                     return {id : item.id,label : item.name};
                                }));
@@ -121,7 +120,7 @@
                 });
                 function getOrgDetailBySiteCode(SiteCode){
                     $.ajax({
-                        url: "getorgdtlBysiteCode?siteCode="+SiteCode,
+                        url: "storeDesc.do.do?storeCode="+SiteCode,
                         cache:false,
                         global: false,
                         type: "POST",
@@ -132,6 +131,7 @@
                             alert("Can not connect to server");
                         },
                         success: function(data){
+                        	//alert(data.region);
                             $("#txtsitedesc").val(data.desc);
                             $("#txtregion").val(data.region);
                             $("#txtformat").val(data.format);
@@ -230,6 +230,54 @@
     					);
   					});
 			  }); 
+			  
+			  $("#hoSelect").change(function(){
+			  	
+			  	setStoreValues($("#hoSelect").val());
+			  
+			  });
+			  
+			  $("#storeSelect").change(function(){
+			  	
+			  	setStoreValues($("#storeSelect").val());
+			  
+			  });
+			  
+			  $("#zoneSelect").change(function(){
+			  	
+			  	setStoreValues($("#zoneSelect").val());
+			  
+			  });
+			  
+			  function setStoreValues(data){
+			  		
+			  		 $.ajax({
+                        url: "storeDesc.do?storeCode="+data,
+                        cache:false,
+                        global: false,
+                        type: "POST",
+                        dataType:"json",
+                        contanttype: 'text/json',
+                        async:false,
+                        error:function(){
+                            alert("Can not connect to server");
+                        },
+                        success: function(data){
+                        	//todo
+                        	$("#txtsitedesc").val(data.desc);
+                        	$("#txtformat").val(data.format);
+                        	$("#txtsitedesc").val(data.region);
+                        	$("#txtlocation").val(data.location);
+                        	$("#txtzone").val(data.zone);
+                        	$("#txtcity").val(data.city);
+                        	$("#txtregion").val(data.region);
+                        	$("#txtpassword").val(data.pwd);	
+                        	
+                        }
+                        });
+			  }
+			  
+			  
 			  
 			  $.getJSON("showRoles.do", function(data){               		   			            		
   					$.each(data, function(index, text) {  						
@@ -335,7 +383,7 @@
                     }
 
                     $.ajax({
-                        url: "getUserdetailforUpdate?txtempid="+idEmp,
+                        url: "getUserdetailforUpdate.do?txtempid="+idEmp,
                         cache:false,
                         global: false,
                         type: "POST",
@@ -358,14 +406,15 @@
                             if(locationId==1){
                                 document.getElementById('tbho').style.display = '';
                                 document.getElementById('hoSel').style.display = '';
-                                $("#hoSel").val(data.rows.strStoreId);
-                                getOrgDetailBySiteCode(data.rows.strStoreId);
+                                $("#hoSelectSection").show();
+                                $("#hoSelect").val(data.rows.strStoreId);
+                                setStoreValues(data.rows.strStoreId);
                                 $("#ho1").attr('checked',true);
                             }else if(locationId==2){
                                 document.getElementById('tbstore').style.display = '';
                                 document.getElementById('siteSel').style.display = '';
-                                 $("#siteSel").val(data.rows.strStoreId);
-                                $("#store1").attr('checked',true);
+                                $("#siteSelectSection").show();
+                                $("#siteSelect").val(data.rows.strStoreId);
                                 getOrgDetailBySiteCode(data.rows.strStoreId);
                                 document.getElementById('tbdept').style.display = 'none';
                                 document.getElementById('deptSel').style.display = 'none';
@@ -809,11 +858,11 @@
                                 <tr id="tbdept">
                                     <td align="right">Department<span class="errorText">&nbsp;*</span></td>
                                     <td><s:select name="deptSel" id="deptSel"  list="lstDept" size="5"  multiple="true"/></td>
-                                    <%--<td>
+                                    <td>
                                         <select  multiple name="deptSel" id="deptSel"   style="height: 50%" >
                                         </select>
 
-</td> --%>
+</td> 
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                 </tr>
@@ -856,7 +905,7 @@
                                                     <input type="submit" action="submituserDtl" id="btnSubmit" name="btnSubmit" value="Create" cssClass="btn" />                                                    
                                                 </td>
 
-                                                <td align="left">  <s:submit action="updateUserDtl" id="btnUpdate"  name="btnUpdate" value="Update" cssClass="btn" /></td>
+                                                <td align="left">  <input type="submit" action="updateUserDtl" id="btnUpdate"  name="btnUpdate" value="Update" cssClass="btn" /></td>
                                                 <td><s:hidden id="SendSiteCode" name="formVo.SendSiteCode" value="%{formVo.SendSiteCode}"/>
                                                     <s:hidden id="SendDeptCode" name="formVo.SendDeptCode" value="%{formVo.SendDeptCode}"/>
                                                     <s:hidden id="selempId" name="selempId" value="%{formVo.selempId}"/>
@@ -872,7 +921,7 @@
                             </table>
                         </td>
                     </tr>
-
+					<tr><td align="center" colspan="5"><#if msg??>${msg}</#if></td></tr>
                 </table>
             </s:form>
         </div>

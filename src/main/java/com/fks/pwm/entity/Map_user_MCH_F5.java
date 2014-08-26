@@ -1,6 +1,7 @@
 package com.fks.pwm.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -9,7 +10,8 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Map_user_MCH_F5.findAll", query="SELECT m FROM Map_user_MCH_F5 m")
+@Table(name="map_user_MCH_F5")
+//@NamedQuery(name="Map_user_MCH_F5.findAll", query="SELECT m FROM Map_user_MCH_F5 m")
 public class Map_user_MCH_F5 implements Serializable {
 	private static final long serialVersionUID = 1L;
 

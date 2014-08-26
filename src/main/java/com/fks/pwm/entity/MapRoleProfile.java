@@ -1,6 +1,8 @@
 package com.fks.pwm.entity;
 
 import java.io.Serializable;
+
+import javax.annotation.Generated;
 import javax.persistence.*;
 
 
@@ -16,7 +18,8 @@ public class MapRoleProfile implements Serializable {
 
 	@Id
 	@Column(name="map_id")
-	private String mapId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long mapId;
 
 	//bi-directional many-to-one association to MstProfile
 	@ManyToOne
@@ -31,11 +34,11 @@ public class MapRoleProfile implements Serializable {
 	public MapRoleProfile() {
 	}
 
-	public String getMapId() {
+	public Long getMapId() {
 		return this.mapId;
 	}
 
-	public void setMapId(String mapId) {
+	public void setMapId(Long mapId) {
 		this.mapId = mapId;
 	}
 

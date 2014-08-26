@@ -10,6 +10,9 @@
 <script src="js/jquery.jqGrid.min.js" type="text/javascript"></script>
 <script src="js/jquery-ui-core.min.js" type="text/javascript"></script>
 <script src="js/jquery_ui_validations.js" type="text/javascript"></script>
+<link href="css/tabs.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/Tabfunction.js"></script>
+
  
 
 

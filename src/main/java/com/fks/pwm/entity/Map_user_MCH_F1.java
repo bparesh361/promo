@@ -1,7 +1,10 @@
 package com.fks.pwm.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.GeneratorType;
 
 
 /**
@@ -9,12 +12,14 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Map_user_MCH_F1.findAll", query="SELECT m FROM Map_user_MCH_F1 m")
+@Table(name="map_user_MCH_F1")
+//@NamedQuery(name="map_user_mch_f1.findAll", query="SELECT m FROM map_user_mch_f1 m")
 public class Map_user_MCH_F1 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String map_user_MCH_F1_id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long map_user_MCH_F1_id;
 
 	//bi-directional many-to-one association to MstEmployee
 	@ManyToOne
@@ -29,11 +34,11 @@ public class Map_user_MCH_F1 implements Serializable {
 	public Map_user_MCH_F1() {
 	}
 
-	public String getMap_user_MCH_F1_id() {
+	public Long getMap_user_MCH_F1_id() {
 		return this.map_user_MCH_F1_id;
 	}
 
-	public void setMap_user_MCH_F1_id(String map_user_MCH_F1_id) {
+	public void setMap_user_MCH_F1_id(Long map_user_MCH_F1_id) {
 		this.map_user_MCH_F1_id = map_user_MCH_F1_id;
 	}
 
