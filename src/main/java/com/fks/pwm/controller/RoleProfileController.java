@@ -114,6 +114,8 @@ public class RoleProfileController {
 		roleProfileService.updateModuleProfile(SelectedIDs,profileSelect);
 		return "master/module";
 	}
+	
+	
 		
 }
 	

@@ -17,6 +17,7 @@ public class MstZone implements Serializable {
 
 	@Id
 	@Column(name="zone_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long zoneId;
 
 	@Column(name="is_blocked")

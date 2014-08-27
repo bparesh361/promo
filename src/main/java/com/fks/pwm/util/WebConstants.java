@@ -69,6 +69,7 @@ public class WebConstants {
 	    public static final Long ZONE = 2L;
 	    public static final Long STORE = 3L;	    
 	    public static final Byte FALSE_BYTE = new Byte("0");
+	    public static final Byte TRUE_BYTE = new Byte("1");
 	    public static final String DEFAULT_PASSWORD = "india123";
 	    
 }

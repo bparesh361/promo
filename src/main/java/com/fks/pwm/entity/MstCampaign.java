@@ -17,6 +17,7 @@ public class MstCampaign implements Serializable {
 
 	@Id
 	@Column(name="campaign_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long campaignId;
 
 	@Column(name="campaign_name")

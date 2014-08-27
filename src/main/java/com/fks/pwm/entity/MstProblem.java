@@ -17,7 +17,8 @@ public class MstProblem implements Serializable {
 
 	@Id
 	@Column(name="problem_type_id")
-	private String problemTypeId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long problemTypeId;
 
 	@Column(name="is_blocked")
 	private byte isBlocked;
@@ -32,11 +33,11 @@ public class MstProblem implements Serializable {
 	public MstProblem() {
 	}
 
-	public String getProblemTypeId() {
+	public Long getProblemTypeId() {
 		return this.problemTypeId;
 	}
 
-	public void setProblemTypeId(String problemTypeId) {
+	public void setProblemTypeId(Long problemTypeId) {
 		this.problemTypeId = problemTypeId;
 	}
 

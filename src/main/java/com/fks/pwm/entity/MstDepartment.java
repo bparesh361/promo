@@ -17,7 +17,8 @@ public class MstDepartment implements Serializable {
 
 	@Id
 	@Column(name="mst_dept_id")
-	private String mstDeptId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long mstDeptId;
 
 	@Column(name="dept_name")
 	private String deptName;
@@ -36,11 +37,11 @@ public class MstDepartment implements Serializable {
 	public MstDepartment() {
 	}
 
-	public String getMstDeptId() {
+	public Long getMstDeptId() {
 		return this.mstDeptId;
 	}
 
-	public void setMstDeptId(String mstDeptId) {
+	public void setMstDeptId(Long mstDeptId) {
 		this.mstDeptId = mstDeptId;
 	}
 

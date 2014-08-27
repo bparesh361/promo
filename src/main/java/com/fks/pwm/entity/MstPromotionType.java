@@ -17,7 +17,7 @@ public class MstPromotionType implements Serializable {
 
 	@Id
 	@Column(name="promo_type_id")
-	private String promoTypeId;
+	private Long promoTypeId;
 
 	@Column(name="is_blocked")
 	private byte isBlocked;
@@ -36,11 +36,11 @@ public class MstPromotionType implements Serializable {
 	public MstPromotionType() {
 	}
 
-	public String getPromoTypeId() {
+	public Long getPromoTypeId() {
 		return this.promoTypeId;
 	}
 
-	public void setPromoTypeId(String promoTypeId) {
+	public void setPromoTypeId(Long promoTypeId) {
 		this.promoTypeId = promoTypeId;
 	}
 

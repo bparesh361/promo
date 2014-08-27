@@ -51,5 +51,10 @@ public class LoginService {
 		return map;
 
 	}
+	
+	public void changePassword(Long empId, String newPassword){
+		MstEmployee emp = empRepo.findOne(empId);
+		emp.setEmpPassword(newPassword);
+	}
 
 }

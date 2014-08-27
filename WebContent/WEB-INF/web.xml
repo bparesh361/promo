@@ -24,7 +24,11 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<session-config>
+		<session-timeout>1</session-timeout>
+		<tracking-mode>COOKIE</tracking-mode>	
+	</session-config>
 	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
+		<welcome-file>login.do</welcome-file>
 	</welcome-file-list>
 </web-app>

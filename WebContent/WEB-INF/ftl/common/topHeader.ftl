@@ -9,8 +9,8 @@
 			Role : ${emp.mstRole.roleName}
 			<span class="pipespace">|</span>
                     <a href="welcome">Home</a><span class="pipespace">|</span>        
-                    <a href="logout">Logout</a><span class="pipespace">|</span>
-                    <a href="changePassword">Change Password</a>
+                    <a href="logout.do">Logout</a><span class="pipespace">|</span>
+                    <a href="showChangePass.do">Change Password</a>
 			</span>                    
                 </div>
                 <div class="clear"></div>

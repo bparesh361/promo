@@ -17,7 +17,8 @@ public class MstTask implements Serializable {
 
 	@Id
 	@Column(name="task_id")
-	private String taskId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long taskId;
 
 	@Column(name="is_blocked")
 	private byte isBlocked;
@@ -32,11 +33,11 @@ public class MstTask implements Serializable {
 	public MstTask() {
 	}
 
-	public String getTaskId() {
+	public Long getTaskId() {
 		return this.taskId;
 	}
 
-	public void setTaskId(String taskId) {
+	public void setTaskId(Long taskId) {
 		this.taskId = taskId;
 	}
 

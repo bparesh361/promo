@@ -57,21 +57,25 @@
                    		 									<#elseif k1 == "1061">
                    		 										<li><a href="showCampaignPage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1062">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="showMarketingPage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1063">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="showReasonPage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1064">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="showProblemPage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1065">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="showPromotionTypePage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1066">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="showTaskPage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1067">
-                   		 										<li><a href="#">${modules[k1]}</a></li>
+                   		 										<li><a href="showZonePage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1068">
                    		 										<li><a href="showCalendarPage.do">${modules[k1]}</a></li>
                    		 									<#elseif k1 == "1069">
-                   		 										<li><a href="#">${modules[k1]}</a></li>                   		 									                   		 						                		 		
+                   		 										<li><a href="showCampaignPage.do">${modules[k1]}</a></li>
+                   		 									<#elseif k1 == "1070">
+                   		 										<li><a href="showDepartmentPage.do">${modules[k1]}</a></li>
+                   		 									<#elseif k1 == "1071">
+                   		 										<li><a href="showStoreProposalPage.do">${modules[k1]}</a></li>		 						                		 		
                    		 									</#if>                   		 								               		 	
                    		 							</#list>
                    		 						</ul>

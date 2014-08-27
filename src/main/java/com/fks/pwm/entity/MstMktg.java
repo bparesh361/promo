@@ -17,7 +17,8 @@ public class MstMktg implements Serializable {
 
 	@Id
 	@Column(name="mktg_id")
-	private String mktgId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long mktgId;
 
 	@Column(name="is_blocked")
 	private byte isBlocked;
@@ -32,11 +33,11 @@ public class MstMktg implements Serializable {
 	public MstMktg() {
 	}
 
-	public String getMktgId() {
+	public Long getMktgId() {
 		return this.mktgId;
 	}
 
-	public void setMktgId(String mktgId) {
+	public void setMktgId(Long mktgId) {
 		this.mktgId = mktgId;
 	}
 

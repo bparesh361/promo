@@ -1,7 +1,9 @@
 package com.fks.pwm.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 
 
 /**
@@ -16,7 +18,8 @@ public class MstReasonRejection implements Serializable {
 
 	@Id
 	@Column(name="reason_rejection_id")
-	private String reasonRejectionId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long reasonRejectionId;
 
 	@Column(name="is_1")
 	private byte is1;
@@ -33,11 +36,11 @@ public class MstReasonRejection implements Serializable {
 	public MstReasonRejection() {
 	}
 
-	public String getReasonRejectionId() {
+	public Long getReasonRejectionId() {
 		return this.reasonRejectionId;
 	}
 
-	public void setReasonRejectionId(String reasonRejectionId) {
+	public void setReasonRejectionId(Long reasonRejectionId) {
 		this.reasonRejectionId = reasonRejectionId;
 	}
 

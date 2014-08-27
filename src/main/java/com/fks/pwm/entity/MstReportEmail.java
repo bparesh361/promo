@@ -16,7 +16,8 @@ public class MstReportEmail implements Serializable {
 
 	@Id
 	@Column(name="mst_report_type_email_id")
-	private String mstReportTypeEmailId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long mstReportTypeEmailId;
 
 	@Column(name="email_id")
 	private String emailId;
@@ -35,11 +36,11 @@ public class MstReportEmail implements Serializable {
 	public MstReportEmail() {
 	}
 
-	public String getMstReportTypeEmailId() {
+	public Long getMstReportTypeEmailId() {
 		return this.mstReportTypeEmailId;
 	}
 
-	public void setMstReportTypeEmailId(String mstReportTypeEmailId) {
+	public void setMstReportTypeEmailId(Long mstReportTypeEmailId) {
 		this.mstReportTypeEmailId = mstReportTypeEmailId;
 	}
 

@@ -17,7 +17,7 @@ public class MstReportType implements Serializable {
 
 	@Id
 	@Column(name="mst_report_type_id")
-	private String mstReportTypeId;
+	private Long mstReportTypeId;
 
 	@Column(name="mst_report_type_desc")
 	private String mstReportTypeDesc;
@@ -33,11 +33,11 @@ public class MstReportType implements Serializable {
 	public MstReportType() {
 	}
 
-	public String getMstReportTypeId() {
+	public Long getMstReportTypeId() {
 		return this.mstReportTypeId;
 	}
 
-	public void setMstReportTypeId(String mstReportTypeId) {
+	public void setMstReportTypeId(Long mstReportTypeId) {
 		this.mstReportTypeId = mstReportTypeId;
 	}
 
