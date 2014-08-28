@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.fks.pwm.entity.Map_user_MCH_F1;
 import com.fks.pwm.entity.Mch;
 import com.fks.pwm.entity.MstEmployee;
 import com.fks.pwm.entity.MstRole;

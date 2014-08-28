@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import sun.jdbc.odbc.OdbcDef;
-
 import com.fks.pwm.entity.MstEmployee;
 import com.fks.pwm.service.LoginService;
 
@@ -78,4 +76,17 @@ public class LoginController {
 		}
 		return "master/changepass";
 	}
+	
+	@RequestMapping("forgotpassword")
+	public String forgotPassword(){		
+		return "master/forgotpwd";
+	}
+	
+	@RequestMapping(value="forgotpasswordreq", method=RequestMethod.POST)
+	public String forgotPasswordReq(@RequestParam String userId, HttpServletRequest request){
+		String result = loginService.forgotPassword(userId);
+		request.setAttribute("msg", result);
+		return "login";
+	}
+	
 }

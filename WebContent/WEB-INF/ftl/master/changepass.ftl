@@ -1,10 +1,6 @@
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Change Password</title>
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <link href="css/style.css" rel="stylesheet" type="text/css" />
-
+<head>
+<#include "../common/scripts.ftl">
         <script type="text/javascript">
 
             jQuery(document).ready(function(){

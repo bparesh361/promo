@@ -58,7 +58,8 @@ body,html {
 				<img src="images/promotion_workflow_logo.png">
 			</div>
 			<div class="login_box">
-				<div class="login_error" id="message">					
+				<div class="login_error" id="message">		
+				<#if msg??>${msg}</#if>			
 				</div>
 				<div class="login_successmsg" id="message1">					
 				</div>
@@ -76,13 +77,15 @@ body,html {
 				</div>
 				<div class="full_width forgot_link">
 					<a id="showWindow"
-						onclick="tb_show( '', 'forgotpassword?height=340&width=530');">Forgot
+						onclick="tb_show( '', 'forgotpassword.do?height=340&width=530');">Forgot
 						Password?</a>
 				</div>
 				<div id="login_btn" class="mt20 left" align="center">
 					<input type="submit" name="btnsubmit" id="btnsubmit" value="Submit"
 						class="but_login" />
 				</div>
+				</br>
+			
 
 			</div>
 

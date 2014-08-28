@@ -89,7 +89,26 @@
 			<version>2.3</version>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
 
+		<!-- commons dbcp spring-jdbc for ODS -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<!-- Oracle Driver : to be installed manually -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.3.0</version>
+		</dependency>
+		
 		<!-- for log4j... exclusion due to jar file not able download from the 
 			repository -->
 		<dependency>

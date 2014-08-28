@@ -40,7 +40,6 @@ import com.fks.pwm.service.MasterService;
 import com.fks.pwm.util.CommonUtil;
 import com.fks.pwm.util.MasterJSONUtil;
 import com.fks.pwm.util.WebConstants;
-import com.fks.pwm.vo.MchVO;
 import com.fks.pwm.vo.UserVO;
 
 @Controller

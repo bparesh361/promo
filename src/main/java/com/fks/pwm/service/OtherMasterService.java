@@ -19,7 +19,6 @@ import com.fks.pwm.entity.MstTask;
 import com.fks.pwm.entity.MstZone;
 import com.fks.pwm.repository.CalendarRepo;
 import com.fks.pwm.repository.CampaignRepo;
-import com.fks.pwm.repository.MstCampaignRepo;
 import com.fks.pwm.repository.MstDepartmentRepo;
 import com.fks.pwm.repository.MstMktgRepo;
 import com.fks.pwm.repository.MstProblemRepo;

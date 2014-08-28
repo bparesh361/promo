@@ -100,7 +100,7 @@
                    		 							<#list modules?keys as k1>
                    		 								
                    		 									<#if k1 == "2011">
-                   		 										<li><a href="#">${modules[k1]}</a></li>                   		 									                   		 						                		 		
+                   		 										<li><a href="showProposalPage.do">${modules[k1]}</a></li>                   		 									                   		 						                		 		
                    		 									</#if>
                    		 									<#if k1 == "2012">
                    		 										<li><a href="#">${modules[k1]}</a></li>                   		 									                   		 						                		 		

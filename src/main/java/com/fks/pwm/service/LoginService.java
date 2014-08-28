@@ -19,6 +19,9 @@ public class LoginService {
 
 	@Autowired
 	private MstEmployeeRepository empRepo;
+	
+	@Autowired
+	private EmailService emailService;
 
 	public MstEmployee authenticate(String userName, String pwd) {
 		List<MstEmployee> list = empRepo.findByUserId(userName);
@@ -55,6 +58,15 @@ public class LoginService {
 	public void changePassword(Long empId, String newPassword){
 		MstEmployee emp = empRepo.findOne(empId);
 		emp.setEmpPassword(newPassword);
+	}
+	
+	public String forgotPassword(String empId){
+		List<MstEmployee> emp = empRepo.findByUserId(empId);
+		if(emp==null || emp.size()==0){
+			return "User Id does not Exist";
+		}		
+		emailService.sendForgotPasswordMsg(emp.get(0).getEmailId(), emp.get(0).getEmpPassword(), emp.get(0).getEmpCode());
+		return " Success !!! Password Sent to email Id " + emp.get(0).getEmailId();		
 	}
 
 }

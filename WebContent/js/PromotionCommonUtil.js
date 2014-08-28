@@ -145,7 +145,8 @@ function  validateArticleORMCCode(isArticleEntered,mcCode,articleCode,txtArticle
 }
 
 function  validatePromotionArticleORMCCode(isArticleEntered,mcCode,articleCode,txtArticleNoId,txtArticleDescId,txtMCCodeId,txtMCDescId,txtBrandCodeId,txtBrandDescId,mstPromoID,IsInitiationFlag){
-    if((articleCode ==undefined || articleCode==null || articleCode.length==0) && (mcCode ==undefined || mcCode==null || mcCode.length==0) ){
+	
+	if((articleCode ==undefined || articleCode==null || articleCode.length==0) && (mcCode ==undefined || mcCode==null || mcCode.length==0) ){
         if(txtArticleNoId!=undefined || txtArticleNoId.length>0){
             $("#"+txtArticleNoId).focus();
             $("#"+txtArticleNoId).val("");
@@ -155,6 +156,7 @@ function  validatePromotionArticleORMCCode(isArticleEntered,mcCode,articleCode,t
         }
         return [false,'Please enter article code OR MC code.'];
     }
+	
     if( (articleCode!=undefined  && articleCode.length>0)&& (mcCode!=undefined && mcCode.length>0)){
         if(txtArticleNoId!=undefined || txtArticleNoId.length>0){
             $("#"+txtArticleNoId).focus();
@@ -166,6 +168,7 @@ function  validatePromotionArticleORMCCode(isArticleEntered,mcCode,articleCode,t
         }
         return [false,'Please enter article code OR MC code.'];
     }
+    
     if( articleCode !=undefined && articleCode.length>0 ){
         //        alert("IsInitiationFlag: "+IsInitiationFlag);
         //        alert("mst Promo : "+mstPromoID);
@@ -226,8 +229,9 @@ function  validatePromotionArticleORMCCode(isArticleEntered,mcCode,articleCode,t
 
     var successFlag=true;
     var successMsg="";
+    
     $.ajax({
-        url: "validateArticleORMCCode?isArticleEntered="+isArticleEntered+"&mcCode="+mcCode+"&articleCode="+articleCode+"&mstPromoId="+mstPromoID+"&IsInitiationFlag="+IsInitiationFlag,
+        url: "validateArticleORMCCode.do?isArticleEntered="+isArticleEntered+"&mcCode="+mcCode+"&articleCode="+articleCode+"&mstPromoId="+mstPromoID+"&IsInitiationFlag="+IsInitiationFlag,    	
         global: false,
         type: "POST",
         dataType: "json",
